@@ -1,2 +1,2 @@
 #!/bin/bash
-python - <<END "$PYCODE"
+python - <<EOF "$PYCODE"
