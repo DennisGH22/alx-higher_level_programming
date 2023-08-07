@@ -1,4 +1,4 @@
 #!/bin/bash
-python - <<END
+python3 - <<END
 "$PYCODE"
 END
