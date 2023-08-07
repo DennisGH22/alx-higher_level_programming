@@ -1,8 +1,2 @@
 #!/bin/bash
-if [ -z "$PYFILE" ]; then
-    exit 1
-fi
-
-if [ ! -f "$PYFILE" ]; then
-    exit 1
-fi
+python $PYFILE
