@@ -1,2 +1,2 @@
 #!/bin/bash
-pyinstaller --name "${PYFILE}c" "$PYFILE"
+python3 -m py_compile "$PYFILE"
