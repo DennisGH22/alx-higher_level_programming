@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-for i in range(ord('a'), ord('{')):
+for i in range(ord('z'), ord('`'), -1):
     enumerate(chr(i))
     if i % 2 == 0:
-        i = chr(i - 32)
-    else:
         i = chr(i)
+    else:
+        i = chr(i - 32)
     print(i, end="")
