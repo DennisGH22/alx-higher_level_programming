@@ -5,4 +5,4 @@ for i in range(ord('z'), ord('`'), -1):
         i = chr(i)
     else:
         i = chr(i - 32)
-    print(i, end="")
+    print("{}".format(i), end="")
