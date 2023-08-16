@@ -9,4 +9,4 @@ if __name__ == "__main__":
     print("{} {}{}".format(elements_len, argument_str, argument_end))
 
     for i, v in enumerate(argv[1:], start=1):
-        print(f"{i}: {v}")
+        print("{}: {}".format(i, v))
