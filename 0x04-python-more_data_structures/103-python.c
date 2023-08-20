@@ -43,11 +43,11 @@ void print_python_bytes(PyObject *p)
 
 void print_python_list(PyObject *p)
 {
-	Py_ssize_t i;
-	PyObject *list;
-
 	if (PyList_Check(p))
 	{
+		Py_ssize_t i;
+		PyObject *list;
+
 		printf("[*] Python list info\n");
 		printf("[*] Size of the Python List = %lu\n", PyList_Size(p));
 		printf("[*] Allocated = %lu\n", ((PyListObject *)p)->allocated);
