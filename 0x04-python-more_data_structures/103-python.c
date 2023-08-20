@@ -16,16 +16,16 @@ void print_python_bytes(PyObject *p)
     }
 
     char *str;
-    Py_ssize_t length;
+    Py_ssize_t length, print_length, i;
 
     PyBytes_AsStringAndSize(p, &str, &length);
 
     printf("  size: %lu\n", length);
     printf("  trying string: %s\n", str);
 
-    Py_ssize_t print_length = (length > 10) ? 10 : length;
+    print_length = (length > 10) ? 10 : length;
     printf("  first %lu bytes: ", print_length);
-    for (Py_ssize_t i = 0; i < print_length; i++)
+    for (i = 0; i < print_length; i++)
     {
         printf("%02x ", str[i] & 0xff);
     }
@@ -48,14 +48,15 @@ void print_python_list(PyObject *p)
 
 	const char *item_type_name;
 	PyObject *list_item;
+	Py_ssize_t size, i;
 
     printf("[*] Python list info\n");
 
-    Py_ssize_t size = PyList_Size(p);
+    size = PyList_Size(p);
     printf("[*] Size of the Python List = %ld\n", size);
     printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
 
-    for (Py_ssize_t i = 0; i < size; i++)
+    for (i = 0; i < size; i++)
     {
         list_item = PyList_GetItem(p, i);
         item_type_name = list_item->ob_type->tp_name;
