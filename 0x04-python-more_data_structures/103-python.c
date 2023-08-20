@@ -8,15 +8,15 @@
 
 void print_python_bytes(PyObject *p)
 {
-	char *str;
-	Py_ssize_t length, i;
-
 	printf("[.] bytes object info\n");
 
 	if (!PyBytes_Check(p)) {
 		printf("  [ERROR] Invalid Bytes Object\n");
 		return;
 	}
+
+	char *str;
+	Py_ssize_t length, i;
 
 	PyBytes_AsStringAndSize(p, &str, &length);
 	printf("  size: %lu\n", length);
