@@ -34,58 +34,25 @@ void print_python_list(PyObject *p)
  * @p: The PyObject representing the Python bytes object.
 */
 
-void print_python_bytes_info(PyObject *p)
+void print_python_bytes(PyObject *p)
 {
-    if (!PyBytes_Check(p))
+    if (PyBytes_Check(p))
     {
         printf("[.] bytes object info\n");
-        printf("  [ERROR] Invalid Bytes Object\n");
-        return;
-    }
+        printf("  [.] size: %ld\n", PyBytes_Size(p));
+        printf("  [.] trying string: %s\n", PyBytes_AS_STRING(p));
+        printf("  [.] first %ld bytes: ", PyBytes_Size(p) < 10 ? PyBytes_Size(p) : 10);
 
-    printf("[.] bytes object info\n");
-
-    char *str = PyBytes_AsString(p);
-    Py_ssize_t length = PyBytes_Size(p);
-    Py_ssize_t print_length = (length > 10) ? 10 : length;
-
-    printf("  size: %ld\n", length);
-    printf("  trying string: %s\n", str);
-
-    printf("  first %ld bytes: ", print_length);
-    for (Py_ssize_t i = 0; i < print_length; i++)
-    {
-        printf("%02x", str[i] & 0xff);
-        if (i < print_length - 1)
-            printf(" ");
-    }
-    printf("\n");
-}
-
-void print_python_list_info(PyObject *p)
-{
-    if (!PyList_Check(p))
-    {
-        printf("[*] Invalid Python object. Please provide a Python list.\n");
-        return;
-    }
-
-    printf("[*] Python list info\n");
-
-    Py_ssize_t size = PyList_Size(p);
-    printf("[*] Size of the Python List = %ld\n", size);
-
-    printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
-
-    for (Py_ssize_t i = 0; i < size; i++)
-    {
-        PyObject *list_item = PyList_GetItem(p, i);
-        const char *item_type_name = list_item->ob_type->tp_name;
-        printf("Element %ld: %s\n", i, item_type_name);
-
-        if (strcmp(item_type_name, "bytes") == 0)
+        for (Py_ssize_t i = 0; i < (Py_ssize_t)PyBytes_Size(p) && i < 10; i++)
         {
-            print_python_bytes_info(list_item);
+            printf("%02x", (unsigned char)PyBytes_AS_STRING(p)[i]);
+            if (i < (Py_ssize_t)PyBytes_Size(p) - 1 && i < 9)
+                printf(" ");
         }
+        printf("\n");
+    }
+    else
+    {
+        fprintf(stderr, "  [ERROR] Invalid Bytes Object\n");
     }
 }
