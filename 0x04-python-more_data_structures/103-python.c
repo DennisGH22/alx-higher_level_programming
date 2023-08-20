@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <Python.h>
 
+/**
+ * print_python_bytes_info - Prints basic info about a Python bytes object
+ * @p: Pointer to the Python bytes object
+*/
+
 void print_python_bytes(PyObject *p)
 {
 	char *str;
@@ -30,6 +35,11 @@ void print_python_bytes(PyObject *p)
 	printf("%02x\n", str[length - 1] & 0xff);
 
 }
+
+/**
+ * print_python_list_info - Prints basic info about a Python list
+ * @p: Pointer to the Python list object
+*/
 
 void print_python_list(PyObject *p)
 {
