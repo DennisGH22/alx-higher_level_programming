@@ -5,10 +5,6 @@
  * @p: The PyObject representing the Python list.
 */
 
-#include <stdio.h>
-#include <Python.h>
-
-// Function to print information about Python bytes object
 void print_python_bytes(PyObject *p)
 {
     printf("[.] bytes object info\n");
