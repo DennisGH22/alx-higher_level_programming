@@ -32,7 +32,7 @@ void print_python_bytes(PyObject *p)
 	}
 
 	printf("[.] bytes object info\n");
-	printf("  [.] size: %ld\n", PyBytes_GET_SIZE(p));
+	printf("  [.] size: %zd\n", PyBytes_GET_SIZE(p));
 	printf("  [.] trying string: %s\n", PyBytes_AsString(p));
 }
 
