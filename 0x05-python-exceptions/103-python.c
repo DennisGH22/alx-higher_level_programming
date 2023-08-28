@@ -10,7 +10,8 @@
 /**
  * print_python_bytes - print python things
  * @p: pointer to PyObject p
- */
+*/
+
 void print_python_bytes(PyObject *p)
 {
     size_t byte_count, i;
@@ -41,7 +42,8 @@ void print_python_bytes(PyObject *p)
 /**
  * print_python_float - print python things
  * @p: pointer to PyObject p
- */
+*/
+
 void print_python_float(PyObject *p)
 {
     char *str_repr;
@@ -64,7 +66,8 @@ void print_python_float(PyObject *p)
 /**
  * print_python_list - print python things
  * @p: pointer to PyObject p
- */
+*/
+
 void print_python_list(PyObject *p)
 {
     size_t list_size, i;
