@@ -5,12 +5,13 @@ def safe_print_list_integers(my_list=[], x=0):
 
         for element in my_list:
             try:
-                print("{:d}".format(element), end='')
-                count += 1
+                if count < x:
+                    print("{}".format(element), end="")
+                    count += 1
             except (ValueError, TypeError):
                 pass
 
-            if count == x:
+            if count >= x:
                 break
     except Exception:
         pass
