@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 def safe_function(fct, *args):
     try:
-        return fct(*args)
+        result = fct(*args)
+        return result
     except Exception as e: 
         import sys
 
