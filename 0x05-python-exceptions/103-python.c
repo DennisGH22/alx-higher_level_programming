@@ -17,7 +17,7 @@ void print_python_bytes(PyObject *p)
 	char *data;
 
 	setbuf(stdout, NULL);
-	printf("[.] bytes object info\n");
+	printf("[.] Bytes object info\n");
 
 	if (PyBytes_Check(p) == 0)
 	{
@@ -47,11 +47,11 @@ void print_python_bytes(PyObject *p)
  */
 void print_python_float(PyObject *p)
 {
-	char *str;
+	char *str_repr;
 	double value;
 
 	setbuf(stdout, NULL);
-	printf("[.] float object info\n");
+	printf("[.] Float object info\n");
 
 	if (PyFloat_Check(p) == 0)
 	{
@@ -60,9 +60,9 @@ void print_python_float(PyObject *p)
 	}
 
 	value = ((PyFloatObject *)(p))->ob_fval;
-	str = PyOS_double_to_string(value, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
+	str_repr = PyOS_double_to_string(value, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
 
-	printf("  value: %s\n", str);
+	printf("  value: %s\n", str_repr);
 }
 
 /**
@@ -71,7 +71,7 @@ void print_python_float(PyObject *p)
  */
 void print_python_list(PyObject *p)
 {
-	size_t allocated, size, index;
+	size_t allocated, list_size, index;
 	const char *type_name;
 	PyListObject *list;
 
@@ -85,12 +85,12 @@ void print_python_list(PyObject *p)
 	}
 
 	list = (PyListObject *)p;
-	size = PyList_GET_SIZE(p);
+	list_size = PyList_GET_SIZE(p);
 	allocated = list->allocated;
 
-	printf("[*] Size of the Python List = %ld\n[*] Allocated = %li\n", size, allocated);
+	printf("[*] Size of the Python List = %ld\n[*] Allocated = %li\n", list_size, allocated);
 
-	for (index = 0; index < size; index++)
+	for (index = 0; index < list_size; index++)
 	{
 		type_name = (list->ob_item[index])->ob_type->tp_name;
 		printf("Element %ld: %s\n", index, type_name);
