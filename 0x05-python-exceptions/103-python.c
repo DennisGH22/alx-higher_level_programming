@@ -1,5 +1,11 @@
-#include <stdio.h>
 #include <Python.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <object.h>
+#include <listobject.h>
+#include <bytesobject.h>
+#include <floatobject.h>
+#include <string.h>
 
 /**
  * print_python_list - Print information about a Python list.
