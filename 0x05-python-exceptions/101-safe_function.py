@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-""" safe_function: Executes a function safely. """
-
 def safe_function(fct, *args):
     try:
         return fct(*args)
