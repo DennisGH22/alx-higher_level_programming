@@ -30,7 +30,11 @@ void print_python_bytes(PyObject *p)
     byte_count = PyBytes_Size(p);
     printf("  size: %ld\n  trying string: %s\n", byte_count, data);
     
-    byte_count >= 10 ? byte_count = 10 : byte_count++;
+    if (byte_count >= 10)
+		byte_count = 10;
+	else
+		byte_count++;
+
     printf("  first %ld bytes: ", byte_count);
     
     for (i = 0; i < byte_count - 1; i++)
