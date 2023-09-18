@@ -11,22 +11,22 @@
 
 void print_python_string(PyObject *p)
 {
-    Py_ssize_t length;
+    Py_ssize_t length = ((PyASCIIObject *)(p))->length;
     const wchar_t *wide_str = PyUnicode_AsWideCharString(p, &length);
 
     if (!p || !PyUnicode_Check(p))
     {
-        printf(stderr, "[ERROR] Invalid String Object\n");
+        fprintf(stderr, "[ERROR] Invalid String Object\n");
         return;
     }
 
     printf("[.] string object info\n");
 
-    /* if (!wide_str)
+    if (!wide_str)
     {
         fprintf(stderr, "[ERROR] Failed to retrieve wide char string\n");
         return;
-    } */
+    }
 
     printf("  type: %s\n", PyUnicode_IS_COMPACT_ASCII(p) ? "compact ascii" : "compact unicode object");
     printf("  length: %zd\n", length);
