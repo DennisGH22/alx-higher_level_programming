@@ -16,15 +16,16 @@ def matrix_divided(matrix, div):
     :raises ZeroDivisionError: If div is equal to zero (division by zero).
     """
     if (
-        not all(isinstance(row, list)
-                and all(isinstance(num, (int, float))
-                        for num in row) for row in matrix)
+        not isinstance(matrix, list)
+        or not all(isinstance(row, list)
+                   and all(isinstance(num, (int, float))
+                           for num in row) for row in matrix)
     ):
-        raise TypeError
-    ("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError(
+            "matrix must be a matrix (list of lists) of integers/floats")
 
     row_size = len(matrix[0])
-    if not all(len(row) == row_size for row in matrix):
+    if any(len(row) != row_size for row in matrix):
         raise TypeError("Each row of the matrix must have the same size")
 
     if not isinstance(div, (int, float)):
@@ -33,6 +34,6 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    result = [[round(num / div, 2) for num in row] for row in matrix]
+    results = [[round(num / div, 2) for num in row] for row in matrix]
 
-    return result
+    return results
