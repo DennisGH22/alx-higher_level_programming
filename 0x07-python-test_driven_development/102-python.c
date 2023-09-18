@@ -11,12 +11,12 @@
 
 void print_python_string(PyObject *p)
 {
-    long int length = ((PyASCIIObject *)(p))->length;
+    Py_ssize_t length = ((PyASCIIObject *)(p))->length;
     const wchar_t *wide_str = PyUnicode_AsWideCharString(p, &length);
 
 	fflush(stdout);
 
-    if (p->ob_type != &PyUnicode_Type)
+    if (strcmp(p->ob_type->tp_name, "str") != 0)
     {
         printf(" [ERROR] Invalid String Object\n");
         return;
@@ -25,7 +25,7 @@ void print_python_string(PyObject *p)
     printf("[.] string object info\n");
 
     printf("  type: %s\n", PyUnicode_IS_COMPACT_ASCII(p) ? "compact ascii" : "compact unicode object");
-    printf("  length: %ld\n", length);
+    printf("  length: %zd\n", length);
     printf("  value: %ls\n", wide_str);
 
     PyMem_Free((void *)wide_str);
