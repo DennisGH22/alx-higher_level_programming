@@ -14,30 +14,33 @@ void print_python_string(PyObject *p)
     Py_ssize_t length;
     const wchar_t *wide_str;
 
-    if (PyUnicode_Check(p))
+    if (!PyUnicode_Check(p))
     {
-        printf("[.] string object info\n");
+        fprintf(stderr, "[ERROR] Invalid String Object\n");
+        return;
+    }
 
-        if (PyUnicode_IS_COMPACT_ASCII(p))
-            printf("  type: compact ascii\n");
-        else
-            printf("  type: compact unicode object\n");
-
-        wide_str = PyUnicode_AsWideCharString(p, &length);
-
-        if (wide_str != NULL)
-        {
-            printf("  length: %zd\n", length);
-            printf("  value: %ls\n", wide_str);
-            PyMem_Free((void *)wide_str);
-        }
-        else
-        {
-            printf("  [ERROR] Failed to retrieve wide char string\n");
-        }
+    printf("[.] string object info\n");
+    
+    if (PyUnicode_IS_COMPACT_ASCII(p))
+    {
+        printf("  type: compact ascii\n");
     }
     else
     {
-        printf("  [ERROR] Invalid String Object\n");
+        printf("  type: compact unicode object\n");
     }
+
+    wide_str = PyUnicode_AsWideCharString(p, &length);
+
+    if (wide_str == NULL)
+    {
+        fprintf(stderr, "[ERROR] Failed to retrieve wide char string\n");
+        return;
+    }
+
+    printf("  length: %zd\n", length);
+    printf("  value: %ls\n", wide_str);
+
+    PyMem_Free((void *)wide_str); // Free the allocated memory
 }
