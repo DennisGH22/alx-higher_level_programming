@@ -11,8 +11,8 @@
 
 void print_python_string(PyObject *p)
 {
-    Py_ssize_t length = ((PyASCIIObject *)(p))->length;
-    wchar_t *wide_str = PyUnicode_AsWideCharString(p, &length);
+    long int length = ((PyASCIIObject *)(p))->length;
+    char *wide_str = PyUnicode_AsWideCharString(p, &length);
 
     if (!p || !PyUnicode_Check(p))
     {
@@ -23,7 +23,7 @@ void print_python_string(PyObject *p)
     printf("[.] string object info\n");
 
     printf("  type: %s\n", PyUnicode_IS_COMPACT_ASCII(p) ? "compact ascii" : "compact unicode object");
-    printf("  length: %zd\n", length);
+    printf("  length: %ld\n", length);
     printf("  value: %ls\n", wide_str);
 
     PyMem_Free((void *)wide_str);
