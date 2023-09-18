@@ -24,8 +24,8 @@ class Rectangle(Base):
         Args:
             width (int): Width of the rectangle.
             height (int): Height of the rectangle.
-            x (int, optional): X-coordinate of the rectangle's position. Defaults to 0.
-            y (int, optional): Y-coordinate of the rectangle's position. Defaults to 0.
+            x (int, optional): X-coordinate of the rectangle's position.
+            y (int, optional): Y-coordinate of the rectangle's position.
             id (int, optional): Identifier for the rectangle. Defaults to None.
 
         Returns:
