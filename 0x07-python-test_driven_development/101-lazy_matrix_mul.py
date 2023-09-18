@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-import numpy as np
-
 """ Multiply two matrices using NumPy. """
+import numpy as np
 
 
 def lazy_matrix_mul(m_a, m_b):
