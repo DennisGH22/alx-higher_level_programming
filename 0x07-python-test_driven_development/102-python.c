@@ -14,7 +14,7 @@ void print_python_string(PyObject *p)
     Py_ssize_t length = ((PyASCIIObject *)(p))->length;
     const wchar_t *wide_str = PyUnicode_AsWideCharString(p, &length);
 
-    if (p != 0 || PyUnicode_Check(p) != 0)
+    if (!PyUnicode_Check(p))
     {
         fprintf(stderr, "[ERROR] Invalid String Object\n");
         return;
