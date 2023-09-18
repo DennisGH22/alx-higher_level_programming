@@ -14,13 +14,13 @@ void print_python_string(PyObject *p)
     Py_ssize_t length = ((PyASCIIObject *)(p))->length;
     const wchar_t *wide_str = PyUnicode_AsWideCharString(p, &length);
 
+    printf("[.] string object info\n");
+
     if (p->ob_type != &PyUnicode_Type)
     {
-        fprintf(stderr, "[ERROR] Invalid String Object\n");
+        printf(" [ERROR] Invalid String Object\n");
         return;
     }
-
-    printf("[.] string object info\n");
 
     printf("  type: %s\n", PyUnicode_IS_COMPACT_ASCII(p) ? "compact ascii" : "compact unicode object");
     printf("  length: %zd\n", length);
