@@ -1,0 +1,13 @@
+The ``add_integer`` module
+======================
+
+Using ``add_integer()``
+-------------------
+
+First import
+>>> add_integer = __import__('0-add_integer').add_integer
+
+Now use it:
+
+    >>> add_integer(6, 4)
+    10
