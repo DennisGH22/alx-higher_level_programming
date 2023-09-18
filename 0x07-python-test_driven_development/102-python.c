@@ -16,7 +16,7 @@ void print_python_string(PyObject *p)
 
     if (!p || !PyUnicode_Check(p))
     {
-        fprintf(stderr, "[ERROR] Invalid String Object\n");
+        printf(stderr, "[ERROR] Invalid String Object\n");
         return;
     }
 
@@ -24,7 +24,7 @@ void print_python_string(PyObject *p)
 
     if (!wide_str)
     {
-        fprintf(stderr, "[ERROR] Failed to retrieve wide char string\n");
+        printf(stderr, "[ERROR] Failed to retrieve wide char string\n");
         return;
     }
 
