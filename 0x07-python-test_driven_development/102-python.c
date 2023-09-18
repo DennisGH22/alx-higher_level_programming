@@ -20,9 +20,9 @@ void print_python_string(PyObject *p)
         return;
     }
 
-    /* printf("[.] string object info\n");
+    printf("[.] string object info\n");
 
-    if (!wide_str)
+    /* if (!wide_str)
     {
         fprintf(stderr, "[ERROR] Failed to retrieve wide char string\n");
         return;
