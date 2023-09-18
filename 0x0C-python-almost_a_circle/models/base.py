@@ -1,41 +1,42 @@
 #!/usr/bin/python3
-""" Base class for managing unique identifiers. """
+"""
+This module defines the Base class.
+"""
+
+import json
 
 
 class Base:
     """
-    Base class for managing unique identifiers.
-
-    This class serves as the base for all other classes in the project.
-    It manages the 'id' attribute to ensure each instance
-    has a unique identifier.
-
-    Attributes:
-        __nb_objects (int): A private class attribute to count the number
-        of objects reated from this class.
-
-    Methods:
-        __init__(self, id=None):
-            Constructor for the Base class.
-            Initializes the 'id' attribute either with
-            the provided 'id' argument or assigns a unique identifier.
+    Base class for managing the id attribute in all classes.
     """
+
     __nb_objects = 0
 
     def __init__(self, id=None):
         """
-        Initialize a Base instance.
+        Initializes a Base instance.
 
         Args:
-            id (int, optional): An optional integer identifier.
-            If provided, it will be assigned as the 'id' attribute.
-            If not provided, a unique identifier will be generated.
-
-        Returns:
-            None
+            id (int, optional): Identifier for the instance. Defaults to None.
         """
         if id is not None:
             self.id = id
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """
+        Returns the JSON string representation of list_dictionaries.
+
+        Args:
+            list_dictionaries (list): A list of dictionaries.
+
+        Returns:
+            str: JSON string representation of list_dictionaries.
+        """
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+        return json.dumps(list_dictionaries)
