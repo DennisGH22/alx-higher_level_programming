@@ -31,7 +31,7 @@ class Rectangle(Base):
         Returns:
             None
         """
-        super().__init__(id)  # Call the super class with id
+        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
