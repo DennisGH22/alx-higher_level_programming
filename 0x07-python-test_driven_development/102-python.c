@@ -12,13 +12,11 @@
 void print_python_string(PyObject *p)
 {
     Py_ssize_t length = ((PyASCIIObject *)(p))->length;
-    const wchar_t *wide_str = PyUnicode_AsWideCharString(p, &length);
+    wchar_t *wide_str = PyUnicode_AsWideCharString(p, &length);
 
-	fflush(stdout);
-
-    if (strcmp(p->ob_type->tp_name, "str") != 0)
+    if (!p || !PyUnicode_Check(p))
     {
-        printf(" [ERROR] Invalid String Object\n");
+        fprintf(stderr, "[ERROR] Invalid String Object\n");
         return;
     }
 
