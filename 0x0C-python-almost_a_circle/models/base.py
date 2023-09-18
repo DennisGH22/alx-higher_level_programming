@@ -4,6 +4,7 @@ This module defines the Base class.
 """
 
 import json
+import csv
 
 
 class Base:
@@ -114,5 +115,59 @@ class Base:
                 json_str = file.read()
                 obj_dicts = cls.from_json_string(json_str)
                 return [cls.create(**obj) for obj in obj_dicts]
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Writes the CSV representation of list_objs to a file.
+
+        Args:
+            cls: The class itself.
+            list_objs (list): A list of instances that inherit from Base.
+
+        Returns:
+            None
+        """
+        if list_objs is None:
+            list_objs = []
+
+        filename = cls.__name__ + ".csv"
+        with open(filename, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            for obj in list_objs:
+                if cls.__name__ == "Rectangle":
+                    writer.writerow(
+                        [obj.id, obj.width, obj.height, obj.x, obj.y]
+                    )
+                elif cls.__name__ == "Square":
+                    writer.writerow([obj.id, obj.size, obj.x, obj.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Returns a list of instances based on the CSV file.
+
+        Returns:
+            list: List of instances loaded from the CSV file.
+        """
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, mode='r', newline='') as file:
+                reader = csv.reader(file)
+                obj_list = []
+                for row in reader:
+                    if cls.__name__ == "Rectangle":
+                        obj = cls(
+                            int(row[1]), int(row[2]), int(row[3]),
+                            int(row[4]), int(row[0])
+                        )
+                    elif cls.__name__ == "Square":
+                        obj = cls(
+                            int(row[1]), int(row[2]), int(row[3]), int(row[0])
+                        )
+                    obj_list.append(obj)
+                return obj_list
         except FileNotFoundError:
             return []
