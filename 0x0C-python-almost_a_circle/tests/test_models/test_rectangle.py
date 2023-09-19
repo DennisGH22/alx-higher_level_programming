@@ -1,6 +1,5 @@
-#!/usr/bin/python3
 import unittest
-from models.rectangle import Rectangle
+from models.rectangle import Rectangle  # Replace 'your_module' with the actual name of your module
 
 class TestRectangleMethods(unittest.TestCase):
 
