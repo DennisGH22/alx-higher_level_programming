@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-""" This class represents a node in a singly linked list. """
+"""This class representing a node in a singly linked list."""
 
 
 class Node:
-    """
-    Class representing a node in a singly linked list.
-    """
+    """This class representing a node in a singly linked list."""
 
     def __init__(self, data, next_node=None):
         """
@@ -14,46 +12,40 @@ class Node:
         :param data: Integer data for the node.
         :param next_node: The next node in the linked list.
         """
-        if not isinstance(data, int):
-            raise TypeError("data must be an integer")
-        if next_node is not None and not isinstance(next_node, Node):
-            raise TypeError("next_node must be a Node object")
-        self._data = data
-        self._next_node = next_node
+        self.data = data
+        self.next_node = next_node
 
     @property
     def data(self):
         """Get the data of the node."""
-        return self._data
+        return self.__data
 
     @data.setter
     def data(self, value):
         """Set the data of the node."""
         if not isinstance(value, int):
             raise TypeError("data must be an integer")
-        self._data = value
+        self.__data = value
 
     @property
     def next_node(self):
         """Get the next node."""
-        return self._next_node
+        return self.__next_node
 
     @next_node.setter
     def next_node(self, value):
         """Set the next node."""
-        if value is not None and not isinstance(value, Node):
+        if not isinstance(value, Node) and value is not None:
             raise TypeError("next_node must be a Node object")
-        self._next_node = value
+        self.__next_node = value
 
 
 class SinglyLinkedList:
-    """
-    Class representing a singly linked list.
-    """
+    """This class representing a node in a singly linked list."""
 
     def __init__(self):
         """Initialize an empty singly linked list."""
-        self.head = None
+        self.__head = None
 
     def sorted_insert(self, value):
         """
@@ -62,17 +54,15 @@ class SinglyLinkedList:
         :param value: Integer value to be inserted.
         """
         new_node = Node(value)
-        if self.head is None or value < self.head.data:
-            new_node.next_node = self.head
-            self.head = new_node
-            return
-
-        current = self.head
-        while current.next_node is not None and current.next_node.data < value:
-            current = current.next_node
-
-        new_node.next_node = current.next_node
-        current.next_node = new_node
+        if self.__head is None or self.__head.data > value:
+            new_node.next_node = self.__head
+            self.__head = new_node
+        else:
+            tmp = self.__head
+            while tmp.next_node is not None and tmp.next_node.data < value:
+                tmp = tmp.next_node
+            new_node.next_node = tmp.next_node
+            tmp.next_node = new_node
 
     def __str__(self):
         """
@@ -80,9 +70,12 @@ class SinglyLinkedList:
 
         :return: String representation of the linked list.
         """
-        result = ""
-        current = self.head
-        while current is not None:
-            result += str(current.data) + "\n"
+        values = [str(node.data) for node in self]
+        return '\n'.join(values)
+
+    def __iter__(self):
+        """Make the linked list iterable."""
+        current = self.__head
+        while current:
+            yield current
             current = current.next_node
-        return result
