@@ -2,7 +2,7 @@
 """Returns a copy of the input list."""
 
 
-def copy_list(l):
+def copy_list(input_list):
     """
     Returns a copy of the input list.
 
@@ -12,4 +12,4 @@ def copy_list(l):
     Returns:
         list: A copy of the input list.
     """
-    return l[:]
+    return input_list[:]
