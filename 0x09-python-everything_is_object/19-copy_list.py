@@ -12,4 +12,4 @@ def copy_list(input_list):
     Returns:
         list: A copy of the input list.
     """
-    return input_list[:]
+    return input_list.copy()
