@@ -36,7 +36,7 @@ class Square:
         """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if value < 0:
+        elif value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
 
@@ -72,14 +72,29 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
-        """
-        Print the square with '#' characters,
-        considering the specified position.
-        """
+        """Print the square with '#' characters."""
         if self.__size == 0:
             print()
-        else:
-            for _ in range(self.__position[1]):
-                print()
-            for _ in range(self.__size):
-                print(" " * self.__position[0] + "#" * self.__size)
+            return
+
+        for _ in range(self.__position[1]):
+            print()
+
+        for _ in range(self.__size):
+            print(" " * self.__position[0] + "#" * self.__size)
+
+    def __str__(self):
+        """Define the string representation of a Square."""
+        if self.__size == 0:
+            return ""
+
+        square_str = ""
+        for _ in range(self.__position[1]):
+            square_str += "\n"
+
+        for _ in range(self.__size):
+            square_str += " " * self.__position[0] + "#" * self.__size
+            if _ != self.__size - 1:
+                square_str += "\n"
+
+        return square_str
