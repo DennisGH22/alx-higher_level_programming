@@ -1,6 +1,5 @@
 #!/usr/bin/node
 const args = process.argv.slice(2);
-
 let message;
 
 argv.forEach(() => {
