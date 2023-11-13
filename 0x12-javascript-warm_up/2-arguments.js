@@ -5,11 +5,11 @@ let message;
 
 argv.forEach(() => {
   if (!argv[2]) {
-    message = 'No Argument';
+    message = 'No argument';
   } else if (argv[2] && !argv[3]) {
-    message = 'Argument Found';
+    message = 'Argument found';
   } else {
-    message = 'Arguments Found';
+    message = 'Arguments found';
   }
 });
 
