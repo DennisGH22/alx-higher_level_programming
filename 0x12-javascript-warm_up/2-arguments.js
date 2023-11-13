@@ -3,7 +3,7 @@ const { argv } = require('node:process');
 
 let message;
 
-argv.forEach((element) => {
+argv.forEach(() => {
   if (!argv[2]) {
     message = 'No Argument';
   } else if (argv[2] && !argv[3]) {
