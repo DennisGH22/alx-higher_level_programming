@@ -14,7 +14,7 @@ function factorial (n) {
       return result;
     }
   } else {
-	return 1;
+    return 1;
   }
 }
 console.log(factorial(args[0]));
