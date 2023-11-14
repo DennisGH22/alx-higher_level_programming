@@ -1,11 +1,14 @@
 #!/usr/bin/node
-const dict1 = require('./101-data').dict;
+const originalDict = require('./101-data').dict;
 const result = {};
 
-for (const [userId, occurrences] of Object.entries(dict1)) {
-  if (!Array.isArray(result[occurrences])) {
+for (const userId in originalDict) {
+  const occurrences = originalDict[userId];
+
+  if (!result[occurrences]) {
     result[occurrences] = [];
   }
+
   result[occurrences].push(userId);
 }
 
