@@ -9,8 +9,6 @@ function concatFiles (file1, file12, destination) {
   const concatenatedContent = `${file1Content}\n${file2Content}`;
 
   fs.writeFileSync(destination, concatenatedContent);
-
-  console.log(concatenatedContent);
 }
 
 const file1 = process.argv[2];
