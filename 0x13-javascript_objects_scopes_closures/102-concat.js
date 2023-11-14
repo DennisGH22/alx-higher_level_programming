@@ -6,7 +6,7 @@ function concatFiles (file1, file2, destination) {
 
   const file2Content = fs.readFileSync(file2, 'utf-8');
 
-  const concatenatedContent = `${file1Content}\n${file2Content}`;
+  const concatenatedContent = file1Content + file2Content;
 
   fs.writeFileSync(destination, concatenatedContent);
 }
