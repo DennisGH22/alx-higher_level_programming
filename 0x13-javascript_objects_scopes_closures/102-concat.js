@@ -1,10 +1,10 @@
 #!/usr/bin/node
 const fs = require('fs');
 
-function concatFiles (file1, file12, destination) {
+function concatFiles (file1, file2, destination) {
   const file1Content = fs.readFileSync(file1, 'utf-8');
 
-  const file2Content = fs.readFileSync(file12, 'utf-8');
+  const file2Content = fs.readFileSync(file2, 'utf-8');
 
   const concatenatedContent = `${file1Content}\n${file2Content}`;
 
@@ -12,7 +12,7 @@ function concatFiles (file1, file12, destination) {
 }
 
 const file1 = process.argv[2];
-const file12 = process.argv[3];
+const file2 = process.argv[3];
 const destination = process.argv[4];
 
-concatFiles(file1, file12, destination);
+concatFiles(file1, file2, destination);
