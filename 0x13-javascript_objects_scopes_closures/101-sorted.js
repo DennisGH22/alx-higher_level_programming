@@ -5,7 +5,7 @@ const result = {};
 for (const userId in originalDict) {
   const occurrences = originalDict[userId];
 
-  if (result[occurrences] === undefined) {
+  if (!result[occurrences]) {
     result[occurrences] = [];
   }
 
