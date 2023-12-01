@@ -2,6 +2,7 @@
 import urllib.request
 import sys
 
-with urllib.request.urlopen(sys.argv[1]) as response:
-    x_request_id = response.headers.get('X-Request-Id')
-    print("{}".format(x_request_id))
+if __name__ == "__main__":
+    with urllib.request.urlopen(sys.argv[1]) as url:
+        s = url.getheader('X-Request-Id')
+        print("{}".format(s))
