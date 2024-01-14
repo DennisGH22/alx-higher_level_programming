@@ -1,6 +1,6 @@
 $(document).ready(function () {
-	$('DIV#add_item').click(function () {
-		let listElement = $('<li>Item</li>');
-		$('UL.my_list').append(listElement);
-	});
+  $('DIV#add_item').click(function () {
+    const listElement = $('<li>Item</li>');
+    $('UL.my_list').append(listElement);
+  });
 });
