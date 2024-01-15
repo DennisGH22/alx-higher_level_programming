@@ -16,7 +16,7 @@ $(document).ready(function () {
 
   (function clearList () {
     $('DIV#clear_list').click(function () {
-      ulElement.children().remove();
+      ulElement.empty();
     });
   }());
 });
