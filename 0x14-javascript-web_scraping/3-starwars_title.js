@@ -11,7 +11,7 @@ function getStarWarsMovieTitle (movieId) {
       console.error(`Request failed with status code: ${response.statusCode}`);
     } else {
       const movie = JSON.parse(body);
-      console.log(`Title of Star Wars Episode ${movie.episode_id}: ${movie.title}`);
+      console.log(movie.title);
     }
   });
 }
