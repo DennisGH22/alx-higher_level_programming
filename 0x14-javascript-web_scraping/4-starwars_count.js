@@ -2,6 +2,7 @@
 const request = require('request');
 
 function countMoviesWithCharacter (apiUrl, characterId) {
+
   request(apiUrl, (error, response, body) => {
     if (error) {
       console.error(`Error: ${error.message}`);
