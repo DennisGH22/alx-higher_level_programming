@@ -12,8 +12,6 @@ function fetchAndSaveWebpage (url, filePath) {
       fs.writeFile(filePath, body, 'utf-8', (writeError) => {
         if (writeError) {
           console.error(`Error writing to file: ${writeError.message}`);
-        } else {
-
         }
       });
     }
