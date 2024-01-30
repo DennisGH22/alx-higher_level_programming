@@ -2,24 +2,26 @@
 const request = require('request');
 
 function printCharactersInMovie (movieId) {
-  const apiUrl = `https://swapi.dev/api/films/${movieId}/`;
+  const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
-  request(apiUrl, { json: true }, (error, response, body) => {
+  request(apiUrl, (error, response, body) => {
     if (error) {
       console.error(`Error: ${error.message}`);
     } else if (response.statusCode !== 200) {
       console.error(`Request failed with status code: ${response.statusCode}`);
     } else {
-      const characters = body.characters;
+      const movie = JSON.parse(body);
+      const characterUrls = movie.characters;
 
-      characters.forEach(characterUrl => {
-        request(characterUrl, { json: true }, (characterError, characterResponse, characterBody) => {
+      characterUrls.forEach(characterUrl => {
+        request(characterUrl, (characterError, characterResponse, characterBody) => {
           if (characterError) {
             console.error(`Error fetching character: ${characterError.message}`);
           } else if (characterResponse.statusCode !== 200) {
             console.error(`Request failed with status code: ${characterResponse.statusCode}`);
           } else {
-            console.log(characterBody.name);
+            const character = JSON.parse(characterBody);
+            console.log(character.name);
           }
         });
       });
